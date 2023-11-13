@@ -9,10 +9,10 @@ img = plt.imread("./a.jpg")
 
 width = img.shape[1]
 height = img.shape[0]
+print(f"width, height of image: {width} {height}")
+
 
 img = img.reshape(width * height, 3)
-
-
 kmeans = KMeans(n_clusters=3).fit(img)
 clusters = kmeans.cluster_centers_
 
