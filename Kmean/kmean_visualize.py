@@ -3,20 +3,6 @@ from random import randint
 import math
 from sklearn.cluster import KMeans  
 
-def distance(p1, p2):
-    return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
-
-
-pygame.init()
-
-screen = pygame.display.set_mode((1200, 700))
-pygame.display.set_caption("Kmeans Visualization")
-
-
-running = True
-
-clock = pygame.time.Clock()
-
 BACKGROUND = (214, 214, 214)
 BLACK = (0, 0, 0)
 BACKGROUND_PANEL = (249, 255, 230)
@@ -30,9 +16,24 @@ SKY = (0, 255, 255)
 ORANGE = (255, 125, 25)
 GRAPE = (100, 25, 125)
 GRASS = (55, 155, 65)
-
 COLORS = [RED,GREEN,BLUE,YELLOW,PURPLE,SKY,ORANGE,GRAPE,GRASS]
 
+K = 0
+error = 0
+points = []
+clusters = []
+labels = []
+
+def distance(p1, p2):
+    return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
+
+
+pygame.init()
+screen = pygame.display.set_mode((1200, 700))
+pygame.display.set_caption("Kmeans Visualization")
+
+running = True
+clock = pygame.time.Clock()
 font = pygame.font.SysFont('sans', 40)
 font_small = pygame.font.SysFont('sans', 20)
 text_plus = font.render('+', True, WHITE)
@@ -42,13 +43,6 @@ text_random = font.render('Random', True, WHITE)
 text_reset = font.render('Reset', True, WHITE)
 text_algorithm = font.render('Algorithm', True, WHITE)
 text_error = font.render('Error', True, WHITE)
-
-
-K = 0
-error = 0
-points = []
-clusters = []
-labels = []
 
 while running:
     clock.tick(60)
