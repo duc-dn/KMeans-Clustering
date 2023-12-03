@@ -155,6 +155,8 @@ while running:
                 clusters = []
                 labels = []
                 print('Reset Press')
+
+            # Using lib to caculate Cluster
             if (850 < mouse_x < 1000 and 450 < mouse_y < 500):
                 try:
                     kmeans = KMeans(n_clusters=K).fit(points) 
@@ -164,7 +166,12 @@ while running:
                     print("Error")
     #Draw points 
     for i in range(len(points)):
-        pygame.draw.circle(screen, BLACK, (points[i][0] + 50, points[i][1] + 50), 6)
+        pygame.draw.circle(
+            surface=screen, 
+            color=BLACK, 
+            center=(points[i][0] + 50, points[i][1] + 50), 
+            radius=6
+        )
         if (len(labels) == 0):
             pygame.draw.circle(screen, WHITE, (points[i][0] + 50, points[i][1] + 50), 5)
         else:
